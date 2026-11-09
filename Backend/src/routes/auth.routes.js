@@ -1,23 +1,28 @@
 /**
- * define las URLS (endpoints) relacionadas con autenticacion 
- * las conecta con su funcion controlandora correspondiente 
+ * Define las urls(endpoints) relacionadas con autenticacion las conecta con su funcion controladora correspondiente
  */
 
-// framework dl servidor 
-const express = require('express');
-// Router del servidor; se monta en ServerRouter.js.
+//framework del servidor
+const express = require('express')
+//router un mini servidor de rutas despues se montan en server.js 
+//con una app.use(api/auth), authRoutes
 const router = express.Router();
 
-//Funciones controladas con la logica real de cada endpoint 
+//funciones controladoras con la logica real de cada endpoint
+
 const {login, perfil} = require('../controllers/auth.controller');
-//middleware que protege rutas exigiendo un token jwt valido 
-const verificarToken = require('../middlewares/verificarToken');
 
-//post /api/auth/login = iniciar sesion (ruta publica)
-router.post('/login', login)
+//middleware que protege rutas exigiendo un token JWT valido
+const verificarToken  = require ('../middlewares/VerificarToken');
 
-//GET api/auth/perfil devuelve los datos de usuario logueado 
-//ruta protegida pasa primero por la verificarToken
+//post/api/auth/login = iniciar sesion (ruta oublica)
+
+router.post('/login', login);
+
+//Get api/auth/perfil = devuelve los datos del usuario logueado
+// ruta protegida  pasa primero por la vereficacion
+
 router.get('/perfil', verificarToken, perfil);
 
-module.exports = router; 
+module.exports = router;
+

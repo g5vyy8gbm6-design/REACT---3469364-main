@@ -1,0 +1,31 @@
+# Dependencias
+node_modules/
+**/node_modules/
+# Variables de entrono 
+.env
+.env.*
+!.env.example
+
+#build/ compilacion
+/dist/
+/build/
+**/dist/
+**/build/
+coverage/
+
+#logs
+*.log
+nmp-debug.log
+yarn-debug.log*
+yarn-error.log*
+
+#editor 
+.vscode/
+.DS_Store
+thumbs.db
+
+#archivos temporales
+*.tmp
+*.temp
+
+
