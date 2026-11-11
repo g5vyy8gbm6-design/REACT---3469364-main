@@ -29,13 +29,10 @@ import{AuthProvider} from './context/AuthContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  {/* BrowserRouter hibilitan l anavegacion por url(react-router-dom)*/}
-  <BrowserRouter>
-  {/* AuthProvider comparte con toda la aplicacion quien es usuario logeado*/}
-  <AuthProvider>
-  <App/>
-  </AuthProvider>
-  </BrowserRouter>
-    <App />
+    <BrowserRouter>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
   </StrictMode>,
 )
