@@ -1,14 +1,48 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import LoginPage from "./Page/LoginPage";
+//piezas de react-router-dom routes/route define el mapa de rutas
+//Navigate sirve para redirigirde una url a otra
+import { Navigate, Route, Routes } from 'react-router-dom';
+//Guardian que protege las rutas privadas del dashboard
+import ProtectedRoute from './routes/ProtectedRoute';
+//Paginas publicas y privadas de la aplicacion
+import LoginPage from './Page/LoginPage';
+import NotFoundPage from './Page/NotFoundPage';
+
+
+function DashboardDemo() {
+  return (
+    <div className="container py-5">
+      <h1 className="mb-3">Dashboard</h1>
+      <p className="text-muted">Bienvenido al sistema de inventario.</p>
+    </div>
+  );
+}
+
 
 function App() {
   return (
     <Routes>
+      {/* Ruta raiz: manda directo al login (si ya hay sesion,
+      protectedRoute se encargara de dejarlo pasar al dashboard)*/}
       <Route path="/" element={<Navigate to="/login" replace />} />
+
+
+      {/*ruta publica cualquiera puede entrar a / login*/}
       <Route path="/login" element={<LoginPage />} />
-      <Route path="*" element={<Navigate to="/login" replace />} />
+
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardDemo />
+          </ProtectedRoute>
+        }
+      />
+
+      {/*cualquier otra url q que no coincida con las anteriores */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
+
 
 export default App;

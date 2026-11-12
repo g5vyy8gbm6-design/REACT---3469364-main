@@ -31,6 +31,28 @@ tener  xampp instalado con mysql en el puerto 3306
 # 3
 tener un editor de codigo
 
+## Iniciar el proyecto en Windows
+
+1. Inicia MySQL desde XAMPP e importa `Backend/database/inventario_react.sql` en phpMyAdmin.
+2. En una terminal, instala dependencias y arranca el backend:
+
+   ```powershell
+   cd Backend
+   npm.cmd install
+   npm.cmd run seed
+   npm.cmd run dev
+   ```
+
+3. En otra terminal, arranca el frontend:
+
+   ```powershell
+   cd frontend
+   npm.cmd install
+   npm.cmd run dev
+   ```
+
+El backend escucha en `http://localhost:4000` y Vite muestra la dirección del frontend en la terminal.
+
 # conocimientos previos 
 
 **componente** la pantalla se divide en piezas pequeñas y reutilizables(un boton, una tabla, un formulario, puede ser un menu) cada componente es una funcion de js 

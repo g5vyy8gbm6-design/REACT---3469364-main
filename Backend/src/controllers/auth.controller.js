@@ -35,7 +35,7 @@ const[filas] = await pool.query(
     'Select id,nombre,email,password,rol,estado from usuarios where email=? limit 1', [email]
 );
 //si no encontro nninguna fila, el correo no existe
-if(filas.legth === 0){
+if(filas.length === 0){
     return res.status(401).json({
         mensaje: 'Correo o contraseña incorrectos'});
 
@@ -46,8 +46,8 @@ if(filas.legth === 0){
     const usuario = filas[0];
     //si el usuario fue desactivado no dejamos iniciar sesion
     // aunque la contraseña sea correcta
-    if(usuario.estado === 0){
-        return res.status(403).JSON({message: 'Este usuario esta desactivado contacte al administrador'});
+    if(Number(usuario.estado) === 0){
+        return res.status(403).json({mensaje: 'Este usuario esta desactivado contacte al administrador'});
     }
 
 
@@ -59,7 +59,7 @@ if(filas.legth === 0){
     const passwordCorrecta = await bcrypt.compare (password, usuario.password);
 
     if (!passwordCorrecta){
-        return res.status(401).JSON({message:'Correo o contraseña incorrectos'});
+        return res.status(401).json({mensaje:'Correo o contraseña incorrectos'});
     }
 
     /**
@@ -82,9 +82,9 @@ if(filas.legth === 0){
      * responder token con los datos publicos del usuario
      * Nunca se devuelve el hash de la contraseña al frontend 
      */
-    return res.JSON({
+    return res.json({
         token,
-        usuario:{
+        user:{
             nombre: usuario.nombre,
             email: usuario.email,
             rol: usuario.rol,
@@ -99,7 +99,7 @@ if(filas.legth === 0){
     //cae aqui en vez de tumbar 
     console.error(' Error en login: ' , error);
 
-    return res.status(500).JSON({mensaje:'Error del servidor a iniciar sesion'});
+    return res.status(500).json({mensaje:'Error del servidor al iniciar sesion'});
 }
 }
 

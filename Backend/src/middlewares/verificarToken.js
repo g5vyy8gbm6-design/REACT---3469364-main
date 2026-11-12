@@ -16,7 +16,7 @@ require('dotenv').config();
 function  verificarToken(req, res, next){
     // el frontend debe enviar el token en header
     //authorization: bearer <token>
-    const authHeader = req.headers['autorizacion'];
+    const authHeader = req.headers.authorization;
     //si no viene el header no hay sesion -> rechazamos la peticion
     if(!authHeader){
         return res.status(401).json({mensaje:'No se envio un token de auntenticacion'})
