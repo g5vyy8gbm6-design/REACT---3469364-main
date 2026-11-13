@@ -116,3 +116,16 @@ react solo se encarga de la int grafica para el resto utilizamos:
         9.3 src/context/authService.jsx
         9.4 src/page/loginPage.jsx
     
+
+    -10.1 archivos a crear
+-frontend/src/routes/ProtectedRoutes.jsx    -----------------
+-fontend/src/layoust/DashboardLayout.jsx
+-frontend/src/components/common/Sidebar.jsx
+-frontend/src/components/common/topbar.jsx
+-frontend/src/pages/DashboardHome.jsx
+-frontend/src/pages/NotFoundPage.jsx ------------------------
+-editar frontend/src/App.jsx
+
+
+
+

@@ -29,17 +29,27 @@ function App() {
       {/*ruta publica cualquiera puede entrar a / login*/}
       <Route path="/login" element={<LoginPage />} />
 
-      <Route
+     {/*<Route
         path="/dashboard"
         element={
           <ProtectedRoute>
             <DashboardDemo />
           </ProtectedRoute>
         }
-      />
+      />*/}
 
       {/*cualquier otra url q que no coincida con las anteriores */}
       <Route path="*" element={<NotFoundPage />} />
+      {/*Grupo de rutas protegidas: todo lo que este dentro este 
+      route solo se muestra su ProtectedRoute confirma que hay sesion ACTIVA; si no, redirige a /login*/}
+      <Route element={<ProtectedRoute/>}>
+      <Route path="/dashboard" element={<DashboardLayout />}>
+      <Route index element={<DashboardHome/>}/>
+      <Route path="usuarios" element={<usuariosPage/>}/>
+   
+   
+        </Route>
+      </Route>      
     </Routes>
   );
 }
